@@ -1,3 +1,4 @@
+import ReactDOM from "react-dom";
+import AppComponent from "./app/app.component";
 
-import 'kassandra/KassandraIndex'
-console.log('Hello from container')
+ReactDOM.render(<AppComponent />, document.getElementById('root'))
