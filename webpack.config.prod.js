@@ -1,10 +1,7 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-//
-const packageJson = require('./package.json');
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: "./src/index.js",
     module: {
         rules: [
@@ -42,24 +39,9 @@ module.exports = {
         extensions: ['.js', '.jsx', '.scss', '.json']
     },
     plugins: [
-        new ModuleFederationPlugin({
-            name: 'container',
-            remotes: {
-                kassandra: 'kassandra@http://localhost:3002/remoteEntry.js'
-            },
-            shared: packageJson.dependencies
-
-        }),
         new HTMLWebpackPlugin({
             template: './public/index.html',
             filename: './index.html'
         })
     ],
-    devtool: 'inline-source-map',
-    devServer: {
-        port: 3000,
-        hot: true,
-        open: true,
-        historyApiFallback: true
-    }
 }
